@@ -4,8 +4,8 @@
   "description": "Scripts to automate the creation of a Godot project with Rust",
   "type": "module",
   "bin": {
-    "new": "src/commands/new.js",
-    "convert": "src/commands/convert.js"
+    "new": "./src/commands/new.js",
+    "convert": "./src/commands/convert.js"
   },
   "scripts": {
     "build": "tsc -p ./tsconfig.json"
