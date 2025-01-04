@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import path from 'path';
 import { askQuestion, error, info, success, warning } from '../helper/cli-text.js';
 import { createGdextension, createRustProject, getProjectName, moveFilesAround, writeLibRs } from '../helper/create-project.js';
