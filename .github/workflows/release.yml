@@ -35,7 +35,7 @@ jobs:
       - name: Prepare release
         working-directory: ./dist
         run: |
-          jq 'del(.devDependencies)' package.json > package.json.tmp
+          jq 'del(.devDependencies, .scripts)' package.json > package.json.tmp
           rm package.json
           mv package.json.tmp package.json
           cp ../README.md README.md

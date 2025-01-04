@@ -1,9 +1,7 @@
-#!/usr/bin/env node
-
 import { spawn } from 'node:child_process';
 import * as fs from 'node:fs/promises';
 import * as path from 'path';
-import { askQuestion, error, info, rl, success } from '../helper/cli-text.js';
+import { askQuestion, error, info, success } from '../helper/cli-text.js';
 import {
   createGdextension,
   createGitRepo,
@@ -77,5 +75,3 @@ if (godotCLIExists) {
 } else {
   postCreateDocs(location);
 }
-
-rl.close();

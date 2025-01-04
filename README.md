@@ -23,7 +23,7 @@ This will create a new rust project by either creating a completely new project 
 To create a new project, run the following command, it has interactive prompts to help you set up your project.
 
 ```sh
-npx godot-rust new
+npx godot-rust@latest new
 ```
 
 ## Convert Existing Godot Project
@@ -38,5 +38,5 @@ Run the command in a folder that contains a `project.godot` file. This will ask 
    - Creates a new Rust project in `<my-project>/rust`
 
 ```sh
-npx godot-rust convert
+npx godot-rust@latest convert
 ```

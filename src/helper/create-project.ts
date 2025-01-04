@@ -33,7 +33,7 @@ opt-level = 3
   );
   console.log(info('Adding godot crate to the Cargo.toml file'));
   await run('cargo', ['add', 'godot']);
-  // await run('cargo', ['build']);
+  await run('cargo', ['build']);
 }
 /**
  * Create a new GDExtension file.

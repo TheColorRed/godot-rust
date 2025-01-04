@@ -1,7 +1,5 @@
-#!/usr/bin/env node
-
 import path from 'path';
-import { askQuestion, error, info, rl, success, warning } from '../helper/cli-text.js';
+import { askQuestion, error, info, success, warning } from '../helper/cli-text.js';
 import { createGdextension, createRustProject, getProjectName, moveFilesAround, writeLibRs } from '../helper/create-project.js';
 import { isGodotProjectDirectory } from '../helper/exists.js';
 
@@ -56,5 +54,3 @@ const answer = await askQuestion('Do you want to add (A) the project to the curr
 if (answer?.toLowerCase() === 'a') await addProject(projectName);
 else if (answer?.toLowerCase() === 'r') restructureProject(projectName);
 else console.log(error('Invalid input, please either enter "a" to add or "r" to restructure the project'));
-
-rl.close();
