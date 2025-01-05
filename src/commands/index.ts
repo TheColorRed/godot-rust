@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
-import { error, rl } from '../helper/cli-text.js';
+import { closeReadline, createReadline, error } from '../helper/cli-text.js';
 
 const command = process.argv[2] ?? '';
+
+createReadline();
 
 switch (command.trim()) {
   case 'new':
@@ -11,9 +13,12 @@ switch (command.trim()) {
   case 'convert':
     await import('./convert.js');
     break;
+  case 'add':
+    await import('./add.js');
+    break;
   default:
     console.log(error('Invalid command'));
     break;
 }
 
-rl.close();
+closeReadline();

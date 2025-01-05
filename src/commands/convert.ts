@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import path from 'path';
 import { askQuestion, error, info, success, warning } from '../helper/cli-text.js';
 import { createGdextension, createRustProject, getProjectName, moveFilesAround, writeLibRs } from '../helper/create-project.js';
@@ -19,7 +17,7 @@ if (!exists) {
  * @param projectName The name of the project.
  */
 export async function addProject(projectName: string) {
-  console.log('Adding project to the current directory');
+  console.log(info('Adding project to the current directory'));
   await createGdextension(CURRENT_DIR, projectName, 'rust');
   await createRustProject(path.join(CURRENT_DIR, 'rust'), projectName);
   await writeLibRs(CURRENT_DIR);

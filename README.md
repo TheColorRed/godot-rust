@@ -33,7 +33,7 @@ This will convert an existing Godot project to a Godot Rust project.
 Run the command in a folder that contains a `project.godot` file, it has interactive prompts to help you convert your project.
 
 1. Add Rust to the project
-  - Adds a new `rust` folder to the project
+   - Adds a new `rust` folder to the project
 2. Restructure the project and add Rust (**<span style="color:red">Backup your project before running a restructure</span>**)
    - Moves the existing project to a `<my-project>/godot` folder
    - Creates a new Rust project in `<my-project>/rust`

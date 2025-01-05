@@ -11,7 +11,7 @@ import {
   postCreateDocs,
   writeLibRs,
 } from '../helper/create-project.js';
-import { checkIfFolderExists, isGitInstalled, isGodotCLIInstalled, isGodotProjectDirectory } from '../helper/exists.js';
+import { checkIfExists, isGitInstalled, isGodotCLIInstalled, isGodotProjectDirectory } from '../helper/exists.js';
 
 const CURRENT_DIR = process.cwd();
 const exists = await isGodotProjectDirectory(CURRENT_DIR);
@@ -40,7 +40,7 @@ export async function createNew(projectName: string) {
 }
 
 const projectName = await getProjectName(CURRENT_DIR);
-const folderExists = await checkIfFolderExists(projectName);
+const folderExists = await checkIfExists(projectName);
 
 if (folderExists) {
   console.log(error('A folder with the same name already exists'));
