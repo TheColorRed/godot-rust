@@ -1,12 +1,26 @@
 [
   {
-    "name": "godot-rust-scripts",
+    "name": "Godot Rust Scripts",
+    "id": "godot-rust-scripts",
     "type": "git",
     "source": "https://github.com/titannano/godot-rust-script"
   },
   {
-    "name": "gdext-coroutines",
+    "name": "Godot Coroutines",
+    "id": "gdext-coroutines",
     "type": "crate",
     "source": "gdext_coroutines"
+  },
+  {
+    "name": "Godot Tokio",
+    "id": "godot-tokio",
+    "type": "crate",
+    "source": "godot_tokio"
+  },
+  {
+    "name": "Godot Ext Gen",
+    "id": "gdext-gen",
+    "type": "crate",
+    "source": "gdext-gen"
   }
 ]
