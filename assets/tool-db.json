@@ -1,24 +1,91 @@
 [
   {
-    "name": "Godot Rust Scripts",
-    "id": "godot-rust-scripts",
-    "type": "git",
-    "source": "https://github.com/titannano/godot-rust-script"
+    "name": "Rust Scripts",
+    "id": "godot-rust-script",
+    "type": "crate",
+    "source": "godot-rust-script",
+    "options": {
+      "git": { "url": "https://github.com/TitanNano/godot-rust-script.git", "branch": "master" }
+    }
   },
   {
-    "name": "Godot Coroutines",
+    "name": "Props",
+    "id": "gd-props",
+    "type": "crate",
+    "source": "gd-props",
+    "options": {
+      "git": { "url": "https://github.com/StatisMike/gd-props.git", "branch": "master" }
+    }
+  },
+  {
+    "name": "Rehearse",
+    "id": "gd-rehearse",
+    "type": "crate",
+    "source": "gd-rehearse",
+    "options": {
+      "git": { "url": "https://github.com/StatisMike/gd-rehearse.git", "branch": "master" }
+    }
+  },
+  {
+    "name": "Spire Tween",
+    "id": "spire_tween",
+    "type": "crate",
+    "source": "spire_tween",
+    "options": {
+      "git": { "url": "https://github.com/Houtamelo/spire_tween.git", "branch": "main" }
+    }
+  },
+  {
+    "name": "Grid Forge",
+    "id": "grid-forge",
+    "type": "crate",
+    "source": "grid-forge",
+    "options": {
+      "git": { "url": "https://github.com/StatisMike/grid-forge.git", "branch": "master" }
+    }
+  },
+  {
+    "name": "Godot Tour",
+    "id": "godot-tour",
+    "type": "crate",
+    "source": "godot_tour",
+    "options": {
+      "git": { "url": "https://github.com/Decapitated/Godot-Tour.git", "branch": "main" }
+    }
+  },
+  {
+    "name": "Godot Trail3D",
+    "id": "godot-trail-3d",
+    "type": "crate",
+    "source": "godot_trail_3d",
+    "options": {
+      "git": { "url": "https://github.com/SomeRanDev/Godot-Trail3D.git", "branch": "main" }
+    }
+  },
+  {
+    "name": "NobodyWho",
+    "id": "nobodywho",
+    "type": "asset",
+    "options": {
+      "asset": {
+        "page": "https://godotengine.org/asset-library/asset/2886"
+      }
+    }
+  },
+  {
+    "name": "Coroutines",
     "id": "gdext-coroutines",
     "type": "crate",
     "source": "gdext_coroutines"
   },
   {
-    "name": "Godot Tokio",
+    "name": "Tokio",
     "id": "godot-tokio",
     "type": "crate",
     "source": "godot_tokio"
   },
   {
-    "name": "Godot Ext Gen",
+    "name": "Extension Generation",
     "id": "gdext-gen",
     "type": "crate",
     "source": "gdext-gen"
