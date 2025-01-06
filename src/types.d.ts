@@ -5,6 +5,14 @@ export interface DatabaseToolOptions {
     url?: string;
     /** The branch of the git repository. */
     branch?: string;
+    /** The release tag of the git repository. */
+    release?: string;
+    /** The owner of the git repository. */
+    owner?: string;
+    /** The repository of the git repository. */
+    repo?: string;
+    /** The name of the asset. to get from the github release api. */
+    asset?: string;
   };
   asset?: {
     page?: string;

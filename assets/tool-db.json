@@ -88,8 +88,9 @@
     "type": "asset",
     "options": {
       "git": {
-        "urL": "https://github.com/deltasiege/godot-rapier-3d",
-        "release": "latest"
+        "owner": "deltasiege",
+        "repo": "godot-rapier-3d",
+        "asset": "godot-rapier-3d--all.zip"
       }
     }
   },

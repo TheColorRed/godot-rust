@@ -1,4 +1,4 @@
-import { addAsset } from '../helper/asset.js';
+import { addGitAsset, addStoreAsset } from '../helper/asset.js';
 import { cargoAddDep, cargoAddGitDep } from '../helper/cargo.js';
 import { error } from '../helper/cli-text.js';
 import { hasFlag, showHelp } from '../helper/commands.js';
@@ -38,7 +38,8 @@ try {
       else if (tool.source) await cargoAddDep(tool.source, project.path);
     } else if (tool.type === 'asset') {
       const root = await getGodotProjectRoot(process.cwd());
-      await addAsset(tool, root);
+      if (tool.options?.git?.owner && tool.options?.git?.repo) await addGitAsset(tool, root);
+      else await addStoreAsset(tool, root);
     } else if (tool.type === 'url') {
       // TODO: Implement URL tool adding
       console.log(error('URL tool adding is not yet implemented'));
