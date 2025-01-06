@@ -7,25 +7,31 @@ export interface HelpObject {
   description: string;
   defaultValue?: string;
 }
-
+/**
+ * Run a command with the given arguments using the `spawn` function.
+ * @param cmd The command to run.
+ * @param args The arguments to pass to the command.
+ */
 export const run = (cmd: string, args?: string[]): Promise<void> =>
   new Promise((resolve, reject) => {
     const child = spawn(cmd, args ?? [], { stdio: 'inherit' });
     child.on('error', reject);
     child.on('close', code => (code === 0 ? resolve() : reject(new Error(`Command failed with code ${code}`))));
   });
-
+/**
+ * Get the value of a flag from the command line arguments.
+ * @param flag The flag to get the value of (without the `-`).
+ */
 export const getFlag = (flag: string) =>
   process.argv.reduce<string | undefined>((acc, arg, index) => {
     if (arg === `-${flag}`) return process.argv[index + 1];
     return acc;
   }, undefined);
-
-export const hasFlag = (flag: string) => {
-  let regex = new RegExp(`-.*?${flag}`);
-  return process.argv.some(arg => regex.test(arg));
-};
-
+/**
+ * Check if a flag is present in the command line arguments.
+ * @param flag The flag to check for (without the `-`).
+ */
+export const hasFlag = (flag: string) => process.argv.some(arg => new RegExp(`-${flag}(\\s|$)`).test(arg));
 /**
  * Show the help text for a command. This will also exit the process.
  * @param description The description of the command.
