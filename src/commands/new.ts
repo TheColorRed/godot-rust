@@ -54,7 +54,7 @@ console.log(success('Godot Rust project created!'));
 const isGit = await isGitInstalled();
 if (isGit) {
   const addGit = await askQuestion('Do you want to initialize this a git repository? [y/n]');
-  if (addGit.toLocaleLowerCase() === 'y') createGitRepo(path.join(CURRENT_DIR, projectName));
+  if (addGit && addGit.toLocaleLowerCase() === 'y') createGitRepo(path.join(CURRENT_DIR, projectName));
 }
 
 const location = path.join(CURRENT_DIR, projectName, 'godot', 'project.godot');

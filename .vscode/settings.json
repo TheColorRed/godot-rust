@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["cdylib", "dylib", "gdext", "gdextension", "reloadable"]
+  "cSpell.words": ["cdylib", "dylib", "gdext", "gdextension", "reloadable"],
+  "typescript.referencesCodeLens.enabled": true
 }

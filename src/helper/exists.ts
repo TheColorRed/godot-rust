@@ -37,6 +37,12 @@ export async function isGodotProjectDirectory(projectDir: string) {
     return false;
   }
 }
+export async function getGodotProjectRoot(projectDir: string) {
+  if (await isGodotProjectDirectory(projectDir)) return projectDir;
+  const files = await getFiles('**/project.godot', projectDir);
+  if (files.length > 0) return path.dirname(files[0]);
+  else return await getGodotProjectRoot(path.resolve(projectDir, '..'));
+}
 /**
  * Gets the current project location of where the command is run.
  * @param projectDir The project directory to check.
@@ -61,7 +67,16 @@ export async function checkIfExists(folder: string) {
     return false;
   }
 }
+/**
+ * Gets a list of files that match a pattern.
+ * @param pattern The pattern to search for.
+ * @param cwd The root directory to search in.
+ * @param absolute Whether to return absolute paths. Defaults to `true`.
+ */
+export async function getFiles(pattern: string, cwd: string, absolute = true) {
+  return fg.async(pattern, { cwd, onlyFiles: true, absolute });
+}
 
-export async function getFiles(pattern: string, root: string) {
-  return fg.async(pattern, { cwd: root, onlyFiles: true, absolute: true });
+export async function getDirectories(pattern: string, cwd: string, absolute = true) {
+  return fg.async(pattern, { cwd, onlyDirectories: true, absolute });
 }

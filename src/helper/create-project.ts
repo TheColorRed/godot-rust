@@ -116,7 +116,7 @@ unsafe impl ExtensionLibrary for RustExtension {}`
  * @param isExistingGodotProject Whether the project is an existing Godot project.
  */
 export async function getProjectName(currentDir: string, isExistingGodotProject = false) {
-  let projectName = '';
+  let projectName: string | undefined = undefined;
   // If the project is not an existing Godot project, ask the user for the project name
   if (!isExistingGodotProject) projectName = await askQuestion('Project name:');
   // If the project is an existing Godot project, use the current directory name as the project name
@@ -128,7 +128,7 @@ export async function getProjectName(currentDir: string, isExistingGodotProject 
   }
 
   // Make sure the project name is not an empty string
-  if (!projectName) {
+  if (!projectName?.trim()) {
     console.log(error('Project name is required'));
     return getProjectName(currentDir);
   }

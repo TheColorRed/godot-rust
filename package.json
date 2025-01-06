@@ -5,7 +5,8 @@
   "type": "module",
   "bin": "./src/commands/index.js",
   "scripts": {
-    "build": "tsc -p ./tsconfig.json"
+    "build": "tsc -p ./tsconfig.json",
+    "build:watch": "tsc -p ./tsconfig.json --watch"
   },
   "repository": {
     "type": "git",
@@ -19,17 +20,20 @@
   "dependencies": {
     "chalk": "^5.4.1",
     "fast-glob": "^3.3.3",
-    "ini": "^5.0.0"
+    "ini": "^5.0.0",
+    "inquirer": "^12.3.0",
+    "yauzl": "^3.2.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/chalk": "^2.2.4",
-    "@types/node": "^22.10.5",
     "@types/ini": "^4.1.1",
+    "@types/node": "^22.10.5",
+    "@types/yauzl": "^2.10.3",
+    "prettier": "^3.4.2",
     "semantic-release": "^24.2.1",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2",
-    "prettier": "^3.4.2"
+    "typescript": "^5.7.2"
   }
 }

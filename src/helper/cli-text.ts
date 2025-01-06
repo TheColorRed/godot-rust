@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import * as readline from 'node:readline';
+import inquirer from 'inquirer';
 
 const theme = {
   defaultValue: '#8a8a8a',
@@ -8,34 +8,55 @@ const theme = {
   error: '#ff3d3d',
   warning: '#ff9f3d',
 };
+
 /**
- * The readline interface.
+ * Display a success message.
+ * @param text The text to display.
  */
-let rl: readline.Interface | undefined = undefined;
-
 export const success = (text: string) => chalk.hex(theme.success)(text);
+/**
+ * Display an info message.
+ * @param text The text to display.
+ */
 export const info = (text: string) => chalk.hex(theme.info)(text);
+/**
+ * Display a default value.
+ * @param text The text to display.
+ */
 export const defaultValue = (text: string) => chalk.hex(theme.defaultValue)(text);
+/**
+ * Display an error message.
+ * @param text The text to display.
+ */
 export const error = (text: string) => chalk.hex(theme.error)(text);
+/**
+ * Display a warning message.
+ * @param text The text to display.
+ */
 export const warning = (text: string) => chalk.hex(theme.warning)(text);
-
 /**
  * Ask a question to the user.
- * @param query The question to ask.
+ * @param message The question to ask.
  */
-export function askQuestion(query: string): Promise<string> {
-  return new Promise(resolve => rl?.question(query + ' ', resolve));
+export async function askQuestion(message: string): Promise<string | undefined> {
+  try {
+    const response = await inquirer.prompt({ name: 'question', message, type: 'input' });
+    return response.question ?? '';
+  } catch {
+    return undefined;
+  }
 }
 /**
- * Start the readline interface.
+ * Show a selection prompt to the user.
+ * @param message The message to display.
+ * @param choices The choices to select from.
+ * @param pageSize The number of choices to display per page. Defaults to 10.
  */
-export function createReadline() {
-  rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-}
-/**
- * Close the readline interface.
- */
-export function closeReadline() {
-  rl?.close();
-  rl = undefined;
+export async function getSelectionList<T, U extends { name: string; value: T }>(message: string, choices: U[], pageSize = 10) {
+  try {
+    const response = await inquirer.prompt({ name: 'question', message, type: 'list', choices, pageSize });
+    return response.question as U['value'];
+  } catch {
+    return undefined;
+  }
 }

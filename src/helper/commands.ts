@@ -2,7 +2,8 @@ import { spawn } from 'node:child_process';
 
 export type HelpItem = string | HelpObject;
 export interface HelpObject {
-  flag: string;
+  flag?: string;
+  command?: string | string[];
   description: string;
   defaultValue?: string;
 }
@@ -44,8 +45,10 @@ export function showHelp(...args: [string, string[] | HelpObject[]] | [string | 
     if (typeof helpItem === 'string') {
       console.log(helpItem);
     } else if (isHelpObject(helpItem)) {
-      const flag = Array(5).fill(' ').join('') + helpItem.flag.padEnd(20);
-      console.log(`${flag} ${helpItem.description}`);
+      const command = Array.isArray(helpItem.command) ? helpItem.command.join('|') : helpItem.command;
+      let value = Array(5).fill(' ').join('') + (helpItem.flag?.padEnd(20) ?? '');
+      value = value.trim() === '' && command ? Array(5).fill(' ').join('') + (command?.padEnd(20) ?? '') : value;
+      console.log(`${value} ${helpItem.description}`);
       if (helpItem.defaultValue) {
         console.log(
           `${Array(20 + 10)
@@ -60,7 +63,7 @@ export function showHelp(...args: [string, string[] | HelpObject[]] | [string | 
 }
 
 function isHelpObject(help: HelpItem): help is HelpObject {
-  if (typeof help === 'object' && 'flag' in help) {
+  if (typeof help === 'object' && ('flag' in help || 'command' in help)) {
     return true;
   }
   return false;
