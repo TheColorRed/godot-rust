@@ -95,6 +95,16 @@
     }
   },
   {
+    "name": "Godot Sandbox",
+    "id": "godot-sandbox",
+    "type": "asset",
+    "options": {
+      "asset": {
+        "page": "https://godotengine.org/asset-library/asset/3192"
+      }
+    }
+  },
+  {
     "name": "Coroutines",
     "id": "gdext-coroutines",
     "type": "crate",
