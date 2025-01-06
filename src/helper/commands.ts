@@ -21,7 +21,10 @@ export const getFlag = (flag: string) =>
     return acc;
   }, undefined);
 
-export const hasFlag = (flag: string) => process.argv.some(arg => arg.match(`-.*?${flag}`));
+export const hasFlag = (flag: string) => {
+  let regex = new RegExp(`-.*?${flag}`);
+  return process.argv.some(arg => regex.test(arg));
+};
 
 /**
  * Show the help text for a command. This will also exit the process.
