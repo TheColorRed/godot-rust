@@ -73,6 +73,26 @@
     }
   },
   {
+    "name": "Rapier Physics 2D ",
+    "id": "rapier-physics-2d",
+    "type": "asset",
+    "options": {
+      "asset": {
+        "page": "https://godotengine.org/asset-library/asset/2267"
+      }
+    }
+  },
+  {
+    "name": "Rapier Physics 3D ",
+    "id": "rapier-physics-3d",
+    "type": "asset",
+    "options": {
+      "git": {
+        "release": "latest"
+      }
+    }
+  },
+  {
     "name": "Coroutines",
     "id": "gdext-coroutines",
     "type": "crate",
