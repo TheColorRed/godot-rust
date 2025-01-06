@@ -10,7 +10,7 @@ function isCommand(command: string): boolean {
 const command = process.argv[2] ?? '';
 const hasHelp = hasFlag('h');
 
-if (!isCommand(command) && hasHelp) {
+if ((!isCommand(command) && hasHelp) || command === 'help') {
   showHelp('Godot Rust CLI', [
     {
       command: 'new',
