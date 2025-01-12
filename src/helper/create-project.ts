@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { readCargoFile, saveCargoFile } from './cargo.js';
 import { askQuestion, defaultValue, error, info, success } from './cli-text.js';
 import { run } from './commands.js';
 
@@ -14,24 +15,22 @@ export async function createRustProject(rootDir: string, projectName: string) {
   await run('cargo', ['new', 'rust', '--vcs', 'none', '--lib']);
   process.chdir('rust');
   console.log(info('Adding resolver = "2" to the Cargo.toml file'));
-  let cargoToml = await fs.readFile('Cargo.toml', 'utf8');
-  cargoToml = cargoToml.replace(/\[package\]/, `[package]\nresolver = "2"`);
-  await fs.writeFile('Cargo.toml', cargoToml);
-  console.log(info('Adding crate-type and profile settings to the Cargo.toml file'));
-  await fs.appendFile(
-    'Cargo.toml',
-    `
-[lib]
-crate-type = ["cdylib"]
-
-[profile.dev]
-opt-level = 0
-
-[profile.dev.package."*"]
-opt-level = 3
-  `
-  );
-  console.log(info('Adding godot crate to the Cargo.toml file'));
+  let cargoToml = await readCargoFile('Cargo.toml');
+  cargoToml.package!.name = projectName;
+  cargoToml.lib = {
+    'crate-type': ['cdylib'],
+  };
+  cargoToml.profile = {
+    dev: {
+      'opt-level': 1,
+      package: {
+        '*': {
+          'opt-level': 3,
+        },
+      },
+    },
+  };
+  await saveCargoFile('Cargo.toml', cargoToml);
   await run('cargo', ['add', 'godot']);
   await run('cargo', ['build']);
 }

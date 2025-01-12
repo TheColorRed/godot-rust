@@ -15,6 +15,19 @@ export interface CargoPackage {
     /** The version of the package. */
     version?: string;
   };
+  lib?: {
+    'crate-type'?: string[];
+  };
+  profile?: {
+    dev?: {
+      'opt-level'?: number;
+      package?: {
+        '*': {
+          'opt-level'?: number;
+        };
+      };
+    };
+  };
   /** The dependencies of the package. */
   dependencies?: { [key: string]: string };
   /** Workspace information. */
