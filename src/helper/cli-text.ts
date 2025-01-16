@@ -50,11 +50,17 @@ export async function askQuestion(message: string): Promise<string | undefined> 
  * Show a selection prompt to the user.
  * @param message The message to display.
  * @param choices The choices to select from.
+ * @param defaultSelection The default selection to use. If not provided, the first choice is used.
  * @param pageSize The number of choices to display per page. Defaults to 10.
  */
-export async function getSelectionList<T, U extends { name: string; value: T }>(message: string, choices: U[], pageSize = 10) {
+export async function askFromSelection<T, U extends { name: string; value: T }>(
+  message: string,
+  choices: U[],
+  defaultSelection?: T,
+  pageSize = 10
+) {
   try {
-    const response = await inquirer.prompt({ name: 'question', message, type: 'list', choices, pageSize });
+    const response = await inquirer.prompt({ name: 'question', message, type: 'list', choices, pageSize, default: defaultSelection });
     return response.question as U['value'];
   } catch {
     return undefined;

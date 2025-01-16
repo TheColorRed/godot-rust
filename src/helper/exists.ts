@@ -15,6 +15,28 @@ export async function isGodotCLIInstalled() {
   }
 }
 /**
+ * Check if Cargo is installed.
+ */
+export async function isCargoInstalled() {
+  try {
+    await run('cargo', ['--version']);
+    return true;
+  } catch {
+    return false;
+  }
+}
+/**
+ * Check if the nightly version of Cargo is installed.
+ */
+export async function isCargoNightlyInstalled() {
+  try {
+    await run('cargo', ['+nightly', '--version']);
+    return true;
+  } catch {
+    return false;
+  }
+}
+/**
  * Check if Git is installed.
  */
 export async function isGitInstalled() {

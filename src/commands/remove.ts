@@ -1,6 +1,16 @@
 import { cargoRemoveDep } from '../helper/cargo.js';
 import { error } from '../helper/cli-text.js';
+import { hasFlag, showHelp } from '../helper/commands.js';
 import { getProject, isProject, selectProjectDependency } from '../helper/project.js';
+
+if (hasFlag('h')) {
+  showHelp('Removes a Rust tool from the project. (Currently only supports removal of crates)', [
+    {
+      flag: '-p',
+      description: 'The name of the project to remove the tool from.',
+    },
+  ]);
+}
 
 const project = await getProject();
 if (!isProject(project)) {

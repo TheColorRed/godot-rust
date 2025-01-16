@@ -1,8 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { readCargoFile, saveCargoFile } from './cargo.js';
-import { askQuestion, defaultValue, error, info, success } from './cli-text.js';
+import { askFromSelection, askQuestion, defaultValue, error, info, success } from './cli-text.js';
 import { run } from './commands.js';
+
+export type ProjectType = 'game' | 'asset';
 
 /**
  * Create a new project in the current directory.
@@ -95,9 +97,9 @@ export async function moveFilesAround(projectName: string) {
 }
 /**
  * Replaces the contents of the lib.rs file with the GDExtension template.
- * @param rootDir The root directory of the project.
+ * @param rootDir The root directory of the project containing the godot directory and the rust directory.
  */
-export async function writeLibRs(rootDir: string) {
+export async function createExtensionLibraryFile(rootDir: string) {
   process.chdir(rootDir);
 
   await fs.writeFile(
@@ -138,6 +140,12 @@ export async function getProjectName(currentDir: string, isExistingGodotProject 
   }
 
   return projectName;
+}
+export async function getProjectType() {
+  return askFromSelection('What type of project is this?', [
+    { name: 'Game', value: 'game' },
+    { name: 'Asset', value: 'asset' },
+  ]) as Promise<ProjectType | undefined>;
 }
 /**
  * Create a new Godot project in the specified folder.
