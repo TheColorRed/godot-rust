@@ -1,5 +1,5 @@
 import { DatabaseTool } from '../types.js';
-import { askQuestion, getSelectionList } from './cli-text.js';
+import { askFromSelection, askQuestion } from './cli-text.js';
 import { getFlag } from './commands.js';
 
 /** The URL of the tool database. */
@@ -15,7 +15,7 @@ export async function getDatabaseTools(): Promise<DatabaseTool[]> {
  */
 export async function selectTool() {
   const tools = (await getDatabaseTools()).map(d => ({ name: d.name, value: d })).sort((a, b) => a.value.name.localeCompare(b.value.name));
-  return getSelectionList('What tool would you like to use?', tools);
+  return askFromSelection('What tool would you like to use?', tools);
 }
 /**
  * Get the current tool passed in from the `-t` flag or shows a selection prompt.

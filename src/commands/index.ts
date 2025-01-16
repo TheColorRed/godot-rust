@@ -3,6 +3,7 @@
 import { error } from '../helper/cli-text.js';
 import { hasFlag, showHelp } from '../helper/commands.js';
 
+/** Whether the command is a command meaning it doesn't start with a dash. */
 function isCommand(command: string): boolean {
   return !command.startsWith('-');
 }
@@ -31,21 +32,17 @@ if ((!isCommand(command) && hasHelp) || command === 'help') {
   ]);
 }
 
+let file = '';
+/* prettier-ignore */
 switch (command.trim()) {
-  case 'new':
-    await import('./new.js');
-    break;
-  case 'convert':
-    await import('./convert.js');
-    break;
-  case 'add':
-    await import('./add.js');
-    break;
+  case 'new': file = './new.js'; break;
+  case 'convert': file = './convert.js'; break;
+  case 'add': file = './add.js'; break;
   case 'remove':
-  case 'rm':
-    await import('./remove.js');
-    break;
+  case 'rm': file = './remove.js'; break;
   default:
     console.log(error('Invalid command'));
-    break;
+    process.exit(1);
 }
+
+await import(file);

@@ -1,7 +1,18 @@
 import path from 'path';
 import { askQuestion, error, info, success, warning } from '../helper/cli-text.js';
-import { createGdextension, createRustProject, getProjectName, moveFilesAround, writeLibRs } from '../helper/create-project.js';
+import { hasFlag, showHelp } from '../helper/commands.js';
+import {
+  createExtensionLibraryFile,
+  createGdextension,
+  createRustProject,
+  getProjectName,
+  moveFilesAround,
+} from '../helper/create-project.js';
 import { isGodotProjectDirectory } from '../helper/exists.js';
+
+if (hasFlag('h')) {
+  showHelp('Converts an existing Godot project to support Rust.', []);
+}
 
 const CURRENT_DIR = process.cwd();
 const exists = await isGodotProjectDirectory(CURRENT_DIR);
@@ -20,7 +31,7 @@ export async function addProject(projectName: string) {
   console.log(info('Adding project to the current directory'));
   await createGdextension(CURRENT_DIR, projectName, 'rust');
   await createRustProject(path.join(CURRENT_DIR, 'rust'), projectName);
-  await writeLibRs(CURRENT_DIR);
+  await createExtensionLibraryFile(CURRENT_DIR);
   console.log(success('\nDone!'));
 }
 /**
@@ -36,7 +47,7 @@ export async function restructureProject(projectName: string) {
     await moveFilesAround(projectName);
     await createGdextension(path.join(CURRENT_DIR, 'godot'), projectName, '../rust');
     await createRustProject(CURRENT_DIR, projectName);
-    await writeLibRs(CURRENT_DIR);
+    await createExtensionLibraryFile(CURRENT_DIR);
     console.log(success('Done!'));
   } else {
     console.log(error('Aborting'));

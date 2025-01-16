@@ -11,7 +11,6 @@ if (hasFlag('h')) {
     {
       flag: '-p',
       description: 'The name of the project to add the tool to.',
-      defaultValue: 'rust',
     },
     {
       flag: '-t',
