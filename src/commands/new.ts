@@ -11,7 +11,17 @@ import {
   postCreateDocs,
   writeLibRs,
 } from '../helper/create-project.js';
-import { checkIfExists, isGitInstalled, isGodotCLIInstalled, isGodotProjectDirectory } from '../helper/exists.js';
+import { checkIfExists, isCargoInstalled, isGitInstalled, isGodotCLIInstalled, isGodotProjectDirectory } from '../helper/exists.js';
+
+// Check if Cargo is installed as it's required to create a new project
+// If it's not installed, show an error message and exit
+const cargoInstalled = await isCargoInstalled();
+if (!cargoInstalled) {
+  console.log(error('Cargo is not installed'));
+  console.log(info('Please install Rust and Cargo before creating a new project'));
+  console.log(info('You can install Rust and Cargo from https://www.rust-lang.org/tools/install'));
+  process.exit(1);
+}
 
 const CURRENT_DIR = process.cwd();
 const exists = await isGodotProjectDirectory(CURRENT_DIR);
