@@ -46,6 +46,7 @@ export async function createGdextension(rootDir: string, projectName: string, ru
   process.chdir(rootDir);
 
   console.log(info('Creating GDExtension: "rust.gdextension"'));
+  const fileName = projectName.replace(/-/g, '_');
   await fs.writeFile(
     'rust.gdextension',
     `[configuration]
@@ -54,14 +55,14 @@ compatibility_minimum = 4.1
 reloadable = true
 
 [libraries]
-linux.debug.x86_64 =     "res://${rustDir}/target/debug/lib${projectName}.so"
-linux.release.x86_64 =   "res://${rustDir}/target/release/lib${projectName}.so"
-windows.debug.x86_64 =   "res://${rustDir}/target/debug/${projectName}.dll"
-windows.release.x86_64 = "res://${rustDir}/target/release/${projectName}.dll"
-macos.debug =            "res://${rustDir}/target/debug/lib${projectName}.dylib"
-macos.release =          "res://${rustDir}/target/release/lib${projectName}.dylib"
-macos.debug.arm64 =      "res://${rustDir}/target/debug/lib${projectName}.dylib"
-macos.release.arm64 =    "res://${rustDir}/target/release/lib${projectName}.dylib"`
+linux.debug.x86_64 =     "res://${rustDir}/target/debug/lib${fileName}.so"
+linux.release.x86_64 =   "res://${rustDir}/target/release/lib${fileName}.so"
+windows.debug.x86_64 =   "res://${rustDir}/target/debug/${fileName}.dll"
+windows.release.x86_64 = "res://${rustDir}/target/release/${fileName}.dll"
+macos.debug =            "res://${rustDir}/target/debug/lib${fileName}.dylib"
+macos.release =          "res://${rustDir}/target/release/lib${fileName}.dylib"
+macos.debug.arm64 =      "res://${rustDir}/target/debug/lib${fileName}.dylib"
+macos.release.arm64 =    "res://${rustDir}/target/release/lib${fileName}.dylib"`
   );
 }
 /**
